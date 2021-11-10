@@ -40,6 +40,8 @@ if __name__ == "__main__":
                   trials=Trials()
                   )
 
+        opt.start_opt()
+
         print(thr, share)
         pprint(opt.trials.best_trial['result'])
         print("\n")

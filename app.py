@@ -18,6 +18,19 @@ from hyperopt import Trials
 import warnings
 warnings.filterwarnings("ignore")
 
+import numpy as np
+
+
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)
+
 
 if __name__ == "__main__":
     print("Start...")
@@ -56,4 +69,4 @@ if __name__ == "__main__":
         #to_tlg(f"thr: {thr:.2f}\tshare: {share:.2f}\tprecision: {opt.trials.best_trial['result']['loss']:.3f}\n")
 
     with open('output_results.json', 'w') as f:
-        f.write(json.dumps(output))
+        f.write(json.dumps(output, cls=NpEncoder))

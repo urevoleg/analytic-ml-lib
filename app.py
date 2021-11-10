@@ -16,6 +16,8 @@ from hyperopt import Trials
 if __name__ == "__main__":
     print("Start...")
     file_dataset = "df_σ02_350_08Х18Н10Т.json"
+    target_mech = "σ0,2_350"
+    norm_mech = "σ0,2_350_norm"
     target = "is_defect"
 
     with open(file_dataset, 'r') as f:
@@ -24,7 +26,7 @@ if __name__ == "__main__":
     print("Dataset: read is done!")
 
     for thr in tqdm.tqdm([1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1], desc="Thr"):
-        df = df.assign(is_defect=lambda row: (row[target] - thr * row[target + '_norm']) < 0).drop([target, target + '_norm'], axis=1)
+        df = df.assign(is_defect=lambda row: (row[target_mech] - thr * row[norm_mech]) < 0).drop([target_mech, norm_mech], axis=1)
         share = df[target].mean()
         d = Dataset(data=json.dumps(df.select_dtypes(np.number).to_dict('records')),
                     features=df.select_dtypes(np.number).drop(target, axis=1).columns, target=target)

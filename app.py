@@ -18,7 +18,7 @@ if __name__ == "__main__":
     with open(file_dataset, 'r') as f:
         df = pd.DataFrame(json.loads(f.read()))
 
-    for thr in tqdm([1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1], desc="Thr"):
+    for thr in tqdm.tqdm([1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1], desc="Thr"):
         df = df.assign(is_defect=lambda row: (row[target] - thr * row[target + '_norm']) < 0).drop([target, target + '_norm'], axis=1)
         share = df[target].mean()
         d = Dataset(data=json.dumps(df.select_dtypes(np.number).to_dict('records')),
@@ -33,5 +33,5 @@ if __name__ == "__main__":
                   )
 
         print(thr, share)
-        pprint(opt.trials.best_trial)
+        pprint(opt.trials.best_trial['result'])
         print("\n")

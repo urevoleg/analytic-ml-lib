@@ -14,11 +14,14 @@ from hyperopt import Trials
 
 
 if __name__ == "__main__":
+    print("Start...")
     file_dataset = "df_σ02_350_08Х18Н10Т.json"
     target = "is_defect"
 
     with open(file_dataset, 'r') as f:
         df = pd.DataFrame(json.loads(f.read()))
+
+    print("Dataset: read is done!")
 
     for thr in tqdm.tqdm([1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1], desc="Thr"):
         df = df.assign(is_defect=lambda row: (row[target] - thr * row[target + '_norm']) < 0).drop([target, target + '_norm'], axis=1)

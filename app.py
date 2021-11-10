@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     print("Dataset: read is done!")
 
-    output = defaultdict([])
+    output = defaultdict(list)
 
     for thr in tqdm.tqdm([1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07, 1.08, 1.09, 1.1], desc="Thr"):
         df_train = df.assign(is_defect=lambda row: (row[target_mech] - thr * row[norm_mech] < 0).astype(int)).drop([target_mech, norm_mech], axis=1)

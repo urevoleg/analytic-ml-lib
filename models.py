@@ -95,3 +95,7 @@ class SelectByMethod():
             scores = f_regression(X, y)
         self.advanced_info_ = {col: score for col, score in zip(self.X_columns_, scores[1])}
         self.selected_columns_ = [col for col, score in zip(self.X_columns_, scores[1]) if score <= thr_alpha]
+
+
+class ModelFit(object):
+    pass

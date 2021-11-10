@@ -5,6 +5,8 @@ import numpy as np
 import json
 from pprint import pprint
 
+from utils import to_tlg
+
 import tqdm
 
 from sklearn.metrics import precision_score
@@ -35,3 +37,5 @@ if __name__ == "__main__":
         print(thr, share)
         pprint(opt.trials.best_trial['result'])
         print("\n")
+
+        to_tlg(f"thr: {thr:.2f}\tshare: {share:.2f}\tprecision: {opt.trials.best_trial['result']['loss']:.3f}\n")

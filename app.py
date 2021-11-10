@@ -13,7 +13,7 @@ from sklearn.metrics import precision_score
 from hyperopt import Trials
 
 import warnings
-warnings.simplefilter("ignore")
+warnings.filterwarnings("ignore")
 
 
 if __name__ == "__main__":

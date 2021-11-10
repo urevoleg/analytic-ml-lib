@@ -168,7 +168,7 @@ class OptParams:
             self.params = {
                 'n_estimators': {'start': 100, 'end': 500, 'step': 10},
                 'max_depth': {'start': 1, 'end': 15, 'step': 3},
-                'min_samples_split': {'start': 1, 'end': 25, 'step': 5}
+                'min_samples_split': {'start': 5, 'end': 25, 'step': 5}
             }
 
     def get_opt_space(self):

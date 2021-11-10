@@ -12,6 +12,9 @@ import tqdm
 from sklearn.metrics import precision_score
 from hyperopt import Trials
 
+import warnings
+warnings.simplefilter("ignore")
+
 
 if __name__ == "__main__":
     print("Start...")

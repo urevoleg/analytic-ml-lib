@@ -185,7 +185,7 @@ class Opt:
     pipeline: MlModel
     metric: field(default_factory=precision_score)
     trials: Trials
-    early_stop: Dict = field(default_factory=lambda: {'iteration_stop_count': 1000, 'percent_increase': 100})
+    early_stop: Dict = field(default_factory=lambda: {'iteration_stop_count': 100, 'percent_increase': 10})
 
     def objective(self, params, pipeline=None, X_train=None, y_train=None, metric=None):
         """

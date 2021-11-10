@@ -9,6 +9,8 @@ from utils import to_tlg
 
 import tqdm
 
+from functools import partial
+
 from sklearn.metrics import precision_score
 from hyperopt import Trials
 
@@ -39,7 +41,7 @@ if __name__ == "__main__":
         opt = Opt(data=d,
                   params=search_space,
                   pipeline=m,
-                  metric=precision_score,
+                  metric=partial(precision_score(zero_division=0)),
                   trials=Trials()
                   )
 

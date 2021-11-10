@@ -41,7 +41,7 @@ if __name__ == "__main__":
         opt = Opt(data=d,
                   params=search_space,
                   pipeline=m,
-                  metric=partial(precision_score(zero_division=0)),
+                  metric=partial(precision_score, zero_division=0),
                   trials=Trials()
                   )
 
